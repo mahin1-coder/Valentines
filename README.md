@@ -7,6 +7,8 @@ A playful “Will you be my Valentine?” page with a Hello Kitty-inspired theme
 - `index.html` – markup
 - `styles.css` – theme styling
 - `script.js` – heart motion + button reactions
+- `breaking-news/index.html` – playful redirect link
+- `system-check/index.html` – secret redirect link
 
 ## Run locally
 
