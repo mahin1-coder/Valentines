@@ -3,42 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Will You Be My Valentine?</title>
+    <title>Will You Be My Valentine? 💌</title>
+    <meta name="description" content="A romantic interactive Valentine's experience" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="card">
-      <header class="hero">
-        <span class="badge">💘 Hello Kitty Valentine Hotline</span>
-        <div class="kitty">
-          <div class="kitty-face">
-            <span class="ear left"></span>
-            <span class="ear right"></span>
-            <span class="eye left"></span>
-            <span class="eye right"></span>
-            <span class="nose"></span>
-            <span class="whisker left"></span>
-            <span class="whisker left"></span>
-            <span class="whisker right"></span>
-            <span class="whisker right"></span>
-            <span class="bow"></span>
-          </div>
+
+    <!-- Animated background hearts (populated by JS) -->
+    <div id="hearts-bg" aria-hidden="true"></div>
+
+    <!-- ─── STAGE 1: LANDING / ENVELOPE ─────────────────────────────── -->
+    <div id="stage-landing" class="stage active">
+      <div class="card">
+        <span class="badge">💌 A Valentine for You</span>
+
+        <div class="envelope-wrap" aria-hidden="true">
+          <div class="envelope-icon">💝</div>
         </div>
-        <h1>Will you be my Valentine?</h1>
-        <p class="subtitle">No pressure, but Kitty already booked the dinner �</p>
-      </header>
 
-      <button id="heart-btn" class="heart" aria-label="Move the heart">
-        💗
-      </button>
+        <h1>Hey <span class="name-highlight" id="display-to">Sweetheart</span>,</h1>
+        <p class="lead-text">someone special has a Valentine for you</p>
+        <p class="from-line">— with love, <span id="display-from">Your Person</span> 💕</p>
 
-      <div class="button-row">
-        <button id="yes-btn" class="yes">Yes, let’s go! 🎀</button>
-        <button id="no-btn" class="no">I need convincing �</button>
+        <button class="btn-primary" id="open-btn">Open Your Valentine 💌</button>
+
+        <button class="btn-text" id="customize-toggle">✏️ Personalise this</button>
+
+        <!-- Personalisation panel -->
+        <div id="customize-panel" class="customize-panel hidden" role="form" aria-label="Personalise your Valentine">
+          <div class="field-group">
+            <label for="input-to">To:</label>
+            <input type="text" id="input-to" placeholder="Recipient's name" maxlength="30" autocomplete="off" />
+          </div>
+          <div class="field-group">
+            <label for="input-from">From:</label>
+            <input type="text" id="input-from" placeholder="Your name" maxlength="30" autocomplete="off" />
+          </div>
+          <div class="field-group">
+            <label for="input-msg">Sweet message:</label>
+            <textarea id="input-msg" placeholder="Write something sweet…" maxlength="160" rows="3"></textarea>
+          </div>
+          <button class="btn-secondary" id="save-customize">Save ✓</button>
+        </div>
       </div>
+    </div>
 
-      <p id="response" class="response"></p>
-    </main>
+    <!-- ─── STAGE 2: THE QUESTION ────────────────────────────────────── -->
+    <div id="stage-question" class="stage">
+      <div class="card question-card">
+
+        <div class="big-emoji pulse" aria-hidden="true">💗</div>
+        <h2>Will you be my Valentine?</h2>
+        <p class="subtitle" id="question-subtitle">The table is already booked 🍓</p>
+
+        <div class="btn-row">
+          <button class="btn-yes" id="yes-btn">Yes, always! 💕</button>
+          <!-- No button – JS makes this run away -->
+          <button class="btn-no" id="no-btn">No 🚫</button>
+        </div>
+
+        <p class="response-text" id="response-text" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <!-- ─── STAGE 3: CELEBRATION ─────────────────────────────────────── -->
+    <div id="stage-celebration" class="stage">
+      <!-- Confetti lands here (JS populated) -->
+      <div id="confetti-container" aria-hidden="true"></div>
+
+      <div class="card celebration-card">
+        <div class="big-emoji bounce" aria-hidden="true">🎉</div>
+        <h2 class="celebration-title">You said yes! 💕</h2>
+        <p class="celebration-sub" id="celebration-sub">You just made someone's whole year.</p>
+
+        <div class="message-box">
+          <p id="final-message">I knew you'd say yes 💌</p>
+        </div>
+
+        <button class="btn-primary" id="share-btn">Share the Love 💝</button>
+        <button class="btn-text" id="restart-btn">Start Over ↩</button>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
